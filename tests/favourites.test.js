@@ -15,7 +15,7 @@ describe("testing adding new favourite recipe", () => {
         utils.addToFavFile(JSON.stringify(record));
         let favRecords = JSON.parse(fs.readFileSync(favFile));
         expect(favRecords['carson']).toContainEqual(record);
-    })
+    });
 });
 
 describe("testing no repeat favourite recipes", () => {
@@ -28,7 +28,7 @@ describe("testing no repeat favourite recipes", () => {
             uri: 123,
             recipeLabel: '123'
         }, 'carson')).toBeTruthy();
-    })
+    });
 });
 
 describe("delete favourite recipes", () => {
