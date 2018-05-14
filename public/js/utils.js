@@ -53,7 +53,7 @@ function addIngredient(queryParams) {
     // Add to search history
     // Do not add duplicate search history
     let duplicateSearch = false;
-    for (i = 0; i < currentSearchHistory[currentUser].length; i++) {
+    for (var i = 0; i < currentSearchHistory[currentUser].length; i++) {
         if (currentSearchHistory[currentUser][i].query === `${queryStr}`) {
             duplicateSearch = true;
             break;
@@ -66,7 +66,7 @@ function addIngredient(queryParams) {
             dietLabels: `${queryParams.dietLabels}`,
             excluded: `exclude ${queryParams.excluded}`,
             query: queryStr
-        })
+        });
     }
 
     localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
@@ -78,7 +78,7 @@ function addIngredient(queryParams) {
  */
 function clearSearchHist() {
     if (currentSearchHistory[currentUser]) {
-        currentSearchHistory[currentUser] = []
+        currentSearchHistory[currentUser] = [];
     }
     localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
     var list = document.getElementById('searchlist');
@@ -91,5 +91,5 @@ function logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentRecipes');
     localStorage.removeItem('favRecipes');
-    window.location.href = '/'
+    window.location.href = '/';
 }

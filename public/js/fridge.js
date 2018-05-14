@@ -3,8 +3,8 @@ var vegList = [], // object list
     vegListImport = []; // record of created objects for faster processing
 /* ------------------- to be changed to blank when merged with hbs ----------------- */
 // list of items saved from elsewhere; currently just a default list of items
-vegListSaved = ["potato", "carrot", "tomato", "bellPepper", "garlic", "eggplant", "corn", "cucumber", "beef", "chicken"];
-emptySlot = []; // un-occupied slots after delete is used
+var vegListSaved = ["potato", "carrot", "tomato", "bellPepper", "garlic", "eggplant", "corn", "cucumber", "beef", "chicken"];
+var emptySlot = []; // un-occupied slots after delete is used
 
 /* ---------- fridge input box ------------- */
 var fridgeInput = document.getElementById("inputBox");
@@ -12,7 +12,7 @@ var fridgeInput = document.getElementById("inputBox");
 
 // fridge input box event listener
 fridgeInput.onkeyup = function (ev) {
-    if (ev.keyCode == 13) {
+    if (ev.keyCode === 13) {
         // disallow blank entry
         if (checkBlank(this.value)) {
             return;
@@ -145,7 +145,7 @@ function displayDoor() {
  * @param {integer} door - 0 refer to top door, 1 refer to bottom door
  */
 function changeDoor(door) {
-    if (doorState[door] == 0) {
+    if (doorState[door] === 0) {
         doorState[door] = 1;
     } else {
         doorState[door] = 0;
@@ -196,7 +196,7 @@ function populate(list) {
 
         // switch to freezer if fridge is full
         var slots = 0;
-        if (emptySlot.length == 0) {
+        if (emptySlot.length === 0) {
             slots = i + extra;
         } else {
             slots = emptySlot[0];
@@ -246,8 +246,8 @@ var ingBar = document.getElementById("ingredient-bar");
 function print_list() {
     temp = "";
     for (var i = 0; i < vegList.length; i += 1) {
-        if (vegList[i].active == 2) {
-            if (temp == "") { // no comma for first item
+        if (vegList[i].active === 2) {
+            if (temp === "") { // no comma for first item
                 temp += vegList[i].id;
             } else {
                 temp += ", " + vegList[i].id;
@@ -289,8 +289,8 @@ function selectVeg(object) {
     // find the index of this item in vegList
     var index = searchIndex(object,vegList);
 
-    if (delState == 0) { // delete is inactive, select items
-        if (vegList[index].active == 1) {
+    if (delState === 0) { // delete is inactive, select items
+        if (vegList[index].active === 1) {
             object.style.opacity = 1.0;
             vegList[index].active = 2;
         } else {
@@ -313,8 +313,8 @@ function hoverVeg(object, exit = 0) {
     var index = searchIndex(object,vegList);
 
     object.style.cursor = "pointer";
-    if (vegList[index].active == 1) {
-        if (exit == 0) {
+    if (vegList[index].active === 1) {
+        if (exit === 0) {
             object.style.opacity = 0.5;
         } else {
             object.style.opacity = 0.2;
@@ -324,7 +324,7 @@ function hoverVeg(object, exit = 0) {
     print_list();
 }
 
-var fridgeDiv = document.getElementById("fridge")
+var fridgeDiv = document.getElementById("fridge");
 /**
  * fridge display open
  */
@@ -341,7 +341,7 @@ function fridgeClose() {
  * fridge display close when clicking outside the window
  */
 window.onclick = function (ev) {
-    if (ev.target == fridgeDiv) {
+    if (ev.target === fridgeDiv) {
         fridgeClose();
     }
-}
+};
